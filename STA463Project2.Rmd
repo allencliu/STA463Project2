@@ -25,8 +25,11 @@ Predictor 2 - dist: Distance from the city center
 Predictor 3 - cleanliness_rating: The cleanliness rating of the listing 
 Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities?select=amsterdam_weekdays.csv
 
+<<<<<<< HEAD
 yes
   
+=======
+>>>>>>> 8592249a7217e60a52ba26e9f31560ea2353ca11
 ## II. Exploratory Data Analysis  
  
 ```{r, echo=FALSE}
