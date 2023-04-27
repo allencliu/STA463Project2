@@ -14,15 +14,35 @@ library(ggfortify)
 library(car)
 ```
 
+
 ## I. Introduction  
+
+ This dataset shows Airbnb prices in Amsterdam during weekdays. Each listing is evaluated for room types, cleanliness, and distance from the city center.  
+The dataset includes :
+Response - price: The total price of the listing 
+Predictor 1 - room_type: The type of room being offered 
+Predictor 2 - dist: Distance from the city center 
+Predictor 3 - cleanliness_rating: The cleanliness rating of the listing 
+Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities?select=amsterdam_weekdays.csv
+
 
   
 ## II. Exploratory Data Analysis  
  
 ```{r, echo=FALSE}
-airbnb <- read.csv("airbnb.csv")
+plc <- read.csv("placement.csv")
+summary(plc)
+noquote(paste('Correlation:',round(cor(plc$cgpa, plc$placement_exam_marks), 2)))
 ```
 
+```{r, echo=FALSE, message=FALSE}
+ggplot(data=plc, aes(x=cgpa, y=placement_exam_marks)) +
+  geom_point() +
+  xlab("CGPA") +
+  ylab("Placement Exam Marks") +
+  geom_smooth(method="lm", se=FALSE)
+```
+  
 ## III. Model and Analysis
 
 ## IV. Conclusion
