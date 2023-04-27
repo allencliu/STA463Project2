@@ -17,6 +17,15 @@ library(car)
 
 ## I. Introduction  
 
+ This dataset shows Airbnb prices in Amsterdam during weekdays. Each listing is evaluated for room types, cleanliness, and distance from the city center.  
+The dataset includes :
+Response - price: The total price of the listing 
+Predictor 1 - room_type: The type of room being offered 
+Predictor 2 - dist: Distance from the city center 
+Predictor 3 - cleanliness_rating: The cleanliness rating of the listing 
+Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities?select=amsterdam_weekdays.csv
+
+
   
 ## II. Exploratory Data Analysis  
  
