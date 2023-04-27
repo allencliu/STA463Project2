@@ -17,6 +17,9 @@ library(car)
 
 ## I. Introduction  
 
+
+
+
  This dataset shows Airbnb prices in Amsterdam during weekdays. Each listing is evaluated for room types, cleanliness, and distance from the city center.  
 The dataset includes :
 Response - price: The total price of the listing 
@@ -30,8 +33,7 @@ Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-c
 
   
 =======
-adlgsdgsdjklgh
->>>>>>> c9795aa6397289ae7128214ef21fcb1e351e2546
+
 ## II. Exploratory Data Analysis  
  
 ```{r, echo=FALSE}
