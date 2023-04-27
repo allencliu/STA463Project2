@@ -27,11 +27,6 @@ Predictor 1 - room_type: The type of room being offered
 Predictor 2 - dist: Distance from the city center 
 Predictor 3 - cleanliness_rating: The cleanliness rating of the listing 
 Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities?select=amsterdam_weekdays.csv
-
-<<<<<<< HEAD
-
-
-  
 =======
 
 ## II. Exploratory Data Analysis  
