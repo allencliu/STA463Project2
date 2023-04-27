@@ -33,19 +33,8 @@ yes
 ## II. Exploratory Data Analysis  
  
 ```{r, echo=FALSE}
-plc <- read.csv("placement.csv")
-summary(plc)
-noquote(paste('Correlation:',round(cor(plc$cgpa, plc$placement_exam_marks), 2)))
+airbnb <- read.csv("airbnb.csv")
 ```
 
-```{r, echo=FALSE, message=FALSE}
-ggplot(data=plc, aes(x=cgpa, y=placement_exam_marks)) +
-  geom_point() +
-  xlab("CGPA") +
-  ylab("Placement Exam Marks") +
-  geom_smooth(method="lm", se=FALSE)
-```
-  
-## III. Model and Analysis
 
 ## IV. Conclusion
