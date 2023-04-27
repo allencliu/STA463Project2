@@ -16,20 +16,25 @@ library(car)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## I. Introduction  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+  
+## II. Exploratory Data Analysis  
+ 
+```{r, echo=FALSE}
+plc <- read.csv("placement.csv")
+summary(plc)
+noquote(paste('Correlation:',round(cor(plc$cgpa, plc$placement_exam_marks), 2)))
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE, message=FALSE}
+ggplot(data=plc, aes(x=cgpa, y=placement_exam_marks)) +
+  geom_point() +
+  xlab("CGPA") +
+  ylab("Placement Exam Marks") +
+  geom_smooth(method="lm", se=FALSE)
 ```
+  
+## III. Model and Analysis
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## IV. Conclusion
