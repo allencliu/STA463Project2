@@ -21,7 +21,6 @@ library(car)
  
 ```{r, echo=FALSE}
 airbnb <- read.csv("airbnb.csv")
-summary(airbnb)
 ```
 
 ## III. Model and Analysis
