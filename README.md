@@ -1,2 +1,2 @@
 # STA463Project2
-Multiple Regression Project
+Multiple Regression Project for STA463
