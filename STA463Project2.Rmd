@@ -46,7 +46,7 @@ airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
 airbnb <- na.omit(airbnb)
 #levels(airbnb$room_type) <- c(1,0)
 airbnb$room_type <- as.factor (airbnb$room_type) 
-airbnb$room_type <- as.binary (airbnb$room_type) 
+airbnb$room_type <- as.numeric(airbnb$room_type) 
 head(airbnb)
 airbnb
 ```
