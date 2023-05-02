@@ -75,6 +75,8 @@ ggplot(airbnb, aes(x=room_type, y=price,group=room_type)) +
 tapply(airbnb$price, airbnb$room_type, summary)
 ```
 
+From the box plots, we can see that the range of prices for `Entire home/apt`, `Private room` and `Shared room` are very different. `Entire home/apt` ranges from a min of 128.90 Euros to a max of 7,78.90 Euros while the other two categories have much smaller ranges with `Private room` having a range from 143.7 to 1714.40 Euros and `Shared room` ranging from 192.90 to 479.2 Euros. The median prices are not as different with `Entire home/apt` being 625.30 Euros, `Private room` being 319.60 Euros and `Shared room` being 258.00 Euros. There are also many outliers in the `Entire home/apt` box plot, the box plot is skewed far right with the highest outlier being more than 4000 Euros from the second highest outlier. The `Private room` box plot also has multiple outliers but it is not as extremely skewed right as the `Entire home/apt` box plot and the `Shared room` boxplot only has one outlier meaning it shows very small signs of skewness.  
+
 =======
 
 ## III Model and Analysis
