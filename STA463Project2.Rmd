@@ -72,6 +72,7 @@ We will examine the distribution of Airbnb prices grouped by Airbnb room types t
 # Create box plots
 ggplot(airbnb, aes(x=room_type, y=price,group=room_type)) + 
   geom_boxplot()
+tapply(airbnb$price, airbnb$room_type, summary)
 ```
 
 
