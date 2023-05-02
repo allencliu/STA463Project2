@@ -39,7 +39,7 @@ This project involves performing a confirmatory multiple regression analysis. Sp
 
 ## II. Exploratory Data Analysis  
  
-In the original Airbnb data set, the column X is merely an index column, and thus should be removed before performing any analyses. We will also remove any rows with N/A values if they are present. Since `room_type` is a categorical variable with 2 factors, we will encode it as a categorical factor variable, where Entire home/apt is 0, Private room is 1, and Shared room is 2.
+In the original Airbnb data set, the column X is merely an index column, and thus should be removed before performing any analyses. We will also remove any rows with N/A values if they are present. Since `room_type` is a categorical variable with 2 factors, we will encode it as a categorical factor variable, where Entire home/apt is 1, Private room is 2, and Shared room is 3.
 
 ```{r, echo=FALSE}
 airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
