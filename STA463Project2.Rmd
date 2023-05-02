@@ -39,7 +39,7 @@ This project involves performing a confirmatory multiple regression analysis. Sp
 
 ## II. Exploratory Data Analysis  
  
-In the original Airbnb dataset, the column X is merely an index column, and thus should be removed before performing any analyses. We will also remove any rows with N/A values if they are present. Since `room_type` is a categorical variable with 2 factors, we will encode it as a binary variable, where Entire home/apt is 0 and Private room is 1.
+In the original Airbnb data set, the column X is merely an index column, and thus should be removed before performing any analyses. We will also remove any rows with N/A values if they are present. Since `room_type` is a categorical variable with 2 factors, we will encode it as a binary variable, where Entire home/apt is 0 and Private room is 1.
 
 ```{r, echo=FALSE}
 airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
@@ -49,7 +49,8 @@ airbnb$room_type <- as.numeric(airbnb$room_type) - 1
 head(airbnb)
 ```
 
-We have removed all unnecessary columns and rows from our dataset. Now we can create a scatter plot and correlation matrix of our variables: 
+We have removed all unnecessary columns and rows from our data set. Now we can create a scatter plot and correlation matrix of our variables: 
+
 
 ```{r, echo=FALSE}
 #pairs(airbnb)
@@ -58,7 +59,7 @@ ggpairs(airbnb)
 cor(airbnb)
 ```
 
-
+It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. There seems to be a moderate negative correlation between room type and price, a low correlation 
 
 =======
 
