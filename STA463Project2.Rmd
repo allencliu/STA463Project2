@@ -17,6 +17,12 @@ library(car)
 
 ## I. Introduction  
 
+This project explores a dataset pertaining to Airbnb prices in Amsterdam during weekdays. Each Airbnb listing is an observation, and is evaluated for room types, cleanliness, and distance from Amsterdam's city center.
+
+Our variables under consideration:
+
+* Y = price (Euros) 
+*
 
 
 
@@ -33,6 +39,7 @@ Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-c
  
 ```{r, echo=FALSE}
 airbnb <- read.csv("airbnb.csv")
+head(airbnb)
 ```
 
 
