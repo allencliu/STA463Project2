@@ -74,6 +74,7 @@ ggplot(airbnb, aes(x=room_type, y=price,group=room_type)) +
   geom_boxplot()
 ```
 
+
 =======
 
 ## III Model and Analysis
