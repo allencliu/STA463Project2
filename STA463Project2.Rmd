@@ -59,7 +59,7 @@ ggpairs(airbnb)
 cor(airbnb)
 ```
 
-It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. There seems to be a moderate negative correlation between room type and price, a low correlation 
+It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. There seems to be a moderate negative correlation between room type and price, a extremely small positive correlation between cleanliness rating and price, and a small negative correlation between distance and price. Also, there does not appear to be any multicollinearity between the predictors.
 
 =======
 
