@@ -52,7 +52,10 @@ head(airbnb)
 We have removed all unnecessary columns and rows from our dataset. Now we can create a scatter plot and correlation matrix of our variables: 
 
 ```{r, echo=FALSE}
-pairs(airbnb)
+#pairs(airbnb)
+#create scatterplot matrix with ggplot
+ggpairs(airbnb)
+cor(airbnb)
 ```
 
 
