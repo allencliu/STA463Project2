@@ -42,14 +42,14 @@ This project involves performing a confirmatory multiple regression analysis. Sp
 In the original Airbnb data set, the column X is merely an index column, and thus should be removed before performing any analyses. We will also remove any rows with N/A values if they are present. Since `room_type` is a categorical variable with 2 factors, we will encode it as a categorical factor variable, where Entire home/apt is 0, Private room is 1, and Shared room is 2.
 
 ```{r, echo=FALSE}
-airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
-airbnb <- na.omit(airbnb)
+airbnb.mod <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
+airbnb.mod <- na.omit(airbnb)
 #airbnb$room_type <- as.factor (airbnb$room_type)
 #airbnb$room_type <- as.numeric(airbnb$room_type)
 airbnb$private_room <-ifelse(airbnb$room_type == 'Private room', 1, 0)
 airbnb$shared_room <-ifelse(airbnb$room_type == 'Shared room', 1, 0)
-airbnb <- airbnb[,-3]
-head(airbnb)
+airbnb.mod <- airbnb.mod[,-3]
+head(airbnb.mod)
 ```
 
 We have removed all unnecessary columns and rows from our data set. Now we can create a scatter plot and correlation matrix of our variables: 
@@ -58,8 +58,8 @@ We have removed all unnecessary columns and rows from our data set. Now we can c
 ```{r, echo=FALSE}
 #pairs(airbnb)
 #create scatterplot matrix with ggplot
-ggpairs(airbnb)
-cor(airbnb)
+ggpairs(airbnb.mod)
+cor(airbnb.mod)
 ```
 
 It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. Since price, cleanliness rating, and distance are skewed, we will transform these variables later in our model and analysis. There seems to be a moderate negative correlation between private room and price of -0.434, an extremely weak positive correlation between cleanliness rating and price of 0.023, and a weak negative correlation between distance and price of -0.259. Also, there does not appear to be any multicollinearity between the predictors. For example, there is an extremely weak positive correlation coefficient of 0.032 between private room and cleanliness rating; an extremely weak negative correlation coefficient of -0.022 between distance and cleanliness rating; a weak negative correlation coefficient of -0.027 between shared room and cleanliness rating. There is a weak positive correlation between private room and distance of 0.102, and an extremely weak positive correlation between shared room and distance of 0.039, and an extremely weak negative correlation between private room and shared room of -0.075.
@@ -70,9 +70,12 @@ We will examine the distribution of Airbnb prices grouped by Airbnb room types t
 
 ```{r, echo=FALSE}
 # Create box plots
-ggplot(airbnb, aes(x=private_room, y=price,group=private_room)) + 
+ggplot(airbnb.mod, aes(x=private_room, y=price,group=private_room)) + 
   geom_boxplot()
-ggplot(airbnb, aes(x=shared_room, y=price,group=shared_room)) + 
+ggplot(airbnb.mod, aes(x=shared_room, y=price,group=shared_room)) + 
+  geom_boxplot()
+
+ggplot(airbnb, aes(x=room_type, y=price,group=room_type)) + 
   geom_boxplot()
 ```
 
