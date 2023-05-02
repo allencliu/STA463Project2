@@ -44,6 +44,7 @@ In the original Airbnb data set, the column X is merely an index column, and thu
 ```{r, echo=FALSE}
 airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
 airbnb <- na.omit(airbnb)
+airbnb.num <- airbnb
 airbnb$room_type <- as.factor (airbnb$room_type) 
 #airbnb$room_type <- as.numeric(airbnb$room_type)
 head(airbnb)
