@@ -45,7 +45,7 @@ In the original Airbnb data set, the column X is merely an index column, and thu
 airbnb <- airbnb[c("price", "cleanliness_rating", "room_type", "dist")]
 airbnb <- na.omit(airbnb)
 airbnb$room_type <- as.factor (airbnb$room_type) 
-airbnb$room_type <- as.numeric(airbnb$room_type) - 1
+airbnb$room_type <- as.numeric(airbnb$room_type)
 head(airbnb)
 ```
 
@@ -61,8 +61,9 @@ cor(airbnb)
 
 It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. Since price, cleanliness rating, and distance are skewed, we will transform these variables later in our model and analysis. There seems to be a moderate negative correlation between room type and price of -0.438, an extremely weak positive correlation between cleanliness rating and price of 0.023, and a weak negative correlation between distance and price of -0.259. Also, there does not appear to be any multicollinearity between the predictors. For example, there is an extremely weak positive correlation coefficient of 0.023 between room type and cleanliness rating; an extremely weak negative correlation coefficient of -0.022 between distance and cleanliness rating; and a weak positive correlation coefficient of 0.111 between distance and room type.
 
+In context of our hypothesis question, 
 
-We will examine the distribution of Airbnb prices grouped by Airbnb room types through boxplots.
+We will examine the distribution of Airbnb prices grouped by Airbnb room types through box plots.
 
 ```{r, echo=FALSE}
 # Create box plots
