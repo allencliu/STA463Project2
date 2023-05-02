@@ -79,6 +79,12 @@ tapply(airbnb$price, airbnb$room_type, summary)
 
 ## III Model and Analysis
 
+The theoretical multiple regression model is as follows:
+
+$Y_i = \beta_0 + \beta_1X_{1i} + \beta_2X_{2i} + \beta_3X_{3i} + \beta_4X_{4i}$
+
+Where $Y_i$ is the Airbnb price in Euros, $X_{1i}$ is the cleanliness rating, $X_{2i}$ is the distance from city center in kilometers, $X_{3i}$ is the dummy variable for private room (1 if Airbnb is a private room, 0 otherwise), and $X_{4i}$ is the dummy variable for shared room (1 if Airbnb is a shared room, 0 otherwise). We have the default case of entire house, meaning that when $X_{3i}$ and $X_{4i}$ are 0, the Airbnb is the entire house.
+
 ```{r}
 airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
 summary(airbnb.lm1)
