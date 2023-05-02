@@ -68,11 +68,6 @@ In context of our hypothesis question, there is a moderate negative correlation 
 
 We will examine the distribution of Airbnb prices grouped by Airbnb room types through box plots.
 
-```{r,eval=FALSE}
-summary(airbnb.mod)
-```
-
-
 ```{r, echo=FALSE}
 # Create box plots
 ggplot(airbnb, aes(x=room_type, y=price,group=room_type)) + 
