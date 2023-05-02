@@ -22,25 +22,24 @@ This project explores a dataset pertaining to Airbnb prices in Amsterdam during 
 Our variables under consideration:
 
 * Y = price (Euros) 
-*
+* X1 = room_type (categorical: Private room, Entire home/apt)
+* X2 = dist (distance from city center in kilometers)
+* X3 = cleanliness_rating (numerical, ranging from 4 to 10)
 
+We will first identify the structure of our dataset:
 
-
- This dataset shows Airbnb prices in Amsterdam during weekdays. Each listing is evaluated for room types, cleanliness, and distance from the city center.  
-The dataset includes :
-Response - price: The total price of the listing 
-Predictor 1 - room_type: The type of room being offered 
-Predictor 2 - dist: Distance from the city center 
-Predictor 3 - cleanliness_rating: The cleanliness rating of the listing 
-Link : https://www.kaggle.com/datasets/thedevastator/airbnb-prices-in-european-cities?select=amsterdam_weekdays.csv
-=======
-
-## II. Exploratory Data Analysis  
- 
 ```{r, echo=FALSE}
 airbnb <- read.csv("airbnb.csv")
 head(airbnb)
 ```
+
+This project involves performing a confirmatory multiple regression analysis. Specifically, we seek to answer the following research question: Does the relationship between Airbnb prices in Amsterdam and distance from the city center differ for Airbnbs in private rooms versus Airbnbs in the entire home or apartment?
+
+=======
+
+## II. Exploratory Data Analysis  
+ 
+
 
 
 ## IV. Conclusion
