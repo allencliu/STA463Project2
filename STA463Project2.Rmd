@@ -61,6 +61,14 @@ cor(airbnb)
 
 It appears the graphs are heavily skewed. Price is skewed to the right; cleanliness rating is skewed to the left, and distance is skewed to the right. Since price, cleanliness rating, and distance are skewed, we will transform these variables later. There seems to be a moderate negative correlation between room type and price, a extremely small positive correlation between cleanliness rating and price, and a small negative correlation between distance and price. Also, there does not appear to be any multicollinearity between the predictors.
 
+
+We will examine the distribuition of Airbnb prices grouped by Airbnb room types through boxplots.
+
+```{r, echo=FALSE}
+# Create box plots
+
+```
+
 =======
 
 ## III Model and Analysis
