@@ -91,16 +91,65 @@ $\beta_0$ is the intercept term (Airbnb price in Euros when the Airbnb has a cle
 
 This model also assumes that errors $\epsilon_i$ are normally distributed with a mean of $0$ and a variance of $\sigma^2$. We also assume that the error terms are independent, meaning $Cov(\epsilon_i, \epsilon_j) = 0$ for $i \neq j$.
 
+Let's look at the fitted model:
+
+```{r,echo=FALSE}
+summary(airbnb.lm1)
+```
+
 
 Now we check the assumptions of our model.
 
-```{r}
+```{r,echo=FALSE}
 airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
-#summary(airbnb.lm1)
 autoplot(airbnb.lm1)
 ```
 
 We notice a fanning effect on Residuals vs. Fitted plot, indicating that there is non-constant variance. The normal Q-Q plot is clearly non-linear, indicating a violation in the normality assumption. We can also observe many points with high standardized residuals and high leverage on the Residuals vs Leverage plot. We propose applying a log-transformation on the response variable (price) and the numeric predictors (cleanliness_rating and dist) as a remedial measure. We will also identify the model with and without outliers and high leverage points.
+
+We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
+
+```{r,echo=FALSE}
+par(mfrow=c(2,2))
+# leverage values
+levs = hatvalues(airbnb.lm1)
+plot(levs, ylab="Leverages", xlab="Observation")
+
+# DFFITS
+dffits.mr = dffits(airbnb.lm1)
+plot(dffits.mr, ylab="DFFITS", xlab="Observation")
+
+# Cook's distance
+cook.mr = cooks.distance(airbnb.lm1)
+plot(cook.mr, ylab="Cook's Distance", xlab="Observation")
+
+# DFBETAS
+dfbetas.mr = dfbetas(airbnb.lm1)
+plot(dfbetas.mr[,2], ylab="DFBETAS x1")
+
+```
+
+```{r,echo=FALSE}
+vif(airbnb.lm1)
+```
+
+
+We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. We have a few high leverage points with leverages above 0.10. Observation 971 appears to be the point with very high Cook's ditance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
+
+Fitting a model with log tranformations on response and numeric predictors:
+
+```{r,echo=FALSE}
+airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
+summary(airbnb.lm.log)
+```
+
+Fitting a log-transformed model without outliers and high leverage points:
+
+```{r,echo=FALSE}
+# Have a conditional to exclude points with a standardized residual >= 3
+
+```
+
 
 
 Best subsets 
