@@ -168,6 +168,12 @@ The fitted model to predict Airbnb price for an Airbnb in an entire home/apt is:
 
 
 
+
+
+
+
+
+
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
 --------------------------------------------------------------------------------
 
