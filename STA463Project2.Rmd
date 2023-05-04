@@ -157,7 +157,7 @@ summary(airbnb.lm1)
 ```
 
 
-By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 0.00914. These p-values are well below our significance level of 0.01, meaning there is sufficient evidence to reject the null hpyothesis. We can concluse $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$, that is, whether or not the Airbnb is in the entire house, a private room, or a shared room is a statistically significant predictor for Airbnb price.
+By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 0.00914. These p-values are well below our significance level of 0.01, meaning there is sufficient evidence to reject the null hypothesis. We can conclude $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$, that is, whether or not the Airbnb is in the entire house, a private room, or a shared room is a statistically significant predictor for Airbnb price.
 
 
 
@@ -181,7 +181,7 @@ By the summary above, we have that the p-value for the $\beta_3$ estimator is < 
 
 
 ##Appendix (TBD)
-
+Fitting a model with log transformations on response and numeric predictors:
 ```{r,echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 par(mfrow=c(2,2))
@@ -222,31 +222,23 @@ vif(airbnb.lm.log)
 ```
 
 
-We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observation 971 appears to be the point with very high Cook's distance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
-
-Fitting a model with log transformations on response and numeric predictors:
+We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observations 74, 628, and 1103 appear to have high Cook's distance. We will exclude these observations and analyze a fitted model without outliers.
 
 ```{r,echo=FALSE}
 airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
 
+# remove outliers and high leverage
 airbnbNO <- airbnb.mod[-c(74,628,1103,971,100,134,191,8,726,1099,138,254,575,272,159,860,454,784),]
-
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
+autoplot(airbnb.lm.log)
 autoplot(airbnbNO.lm.log)
 summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
-
+After log transforming our predictors and y-value, we can compare with removing outliers and high leverage points. 
 
 
 =======
-
-Fitting a log-transformed model without outliers and high leverage points:
-
-```{r,echo=FALSE}
-# Have a conditional to exclude points with a standardized residual >= 3
-
-```
 
 Best subsets 
 
