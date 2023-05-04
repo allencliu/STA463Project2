@@ -102,11 +102,7 @@ Let's look at the fitted model:
 Now we check the assumptions of our model.
 
 ```{r,echo=FALSE}
-<<<<<<< HEAD
-=======
-airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
 summary(airbnb.lm1)
->>>>>>> af32c41597b546265f003767f29da05a09f1a28a
 autoplot(airbnb.lm1)
 ```
 
