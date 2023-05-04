@@ -88,7 +88,7 @@ $Y_i = \beta_0 + \beta_1X_{1i} + \beta_2X_{2i} + \beta_3X_{3i} + \beta_4X_{4i}$
 
 Where $Y_i$ is the Airbnb price in Euros, $X_{1i}$ is the cleanliness rating, $X_{2i}$ is the distance from city center in kilometers, $X_{3i}$ is the dummy variable for private room (1 if Airbnb is a private room, 0 otherwise), and $X_{4i}$ is the dummy variable for shared room (1 if Airbnb is a shared room, 0 otherwise). We have the default case of entire house, meaning that when $X_{3i}$ and $X_{4i}$ are 0, the Airbnb is the entire house.
 
-$\beta_0$ is the intercept term (Airbnb price in Euros when the Airbnb has a cleanliness rating of 0, is 0 kilometers away from the city center, and the Airbnb is the entire house), $\beta_1$ is the slope for cleanliness rating, $\beta_2$ is the slope for distance from city center (kilometers), $\beta_3$ is the slope for wether the Airbnb is a private room, and $\beta_4$ is the slope for wether the Airbnb is a shared room.
+$\beta_0$ is the intercept term (Airbnb price in Euros when the Airbnb has a cleanliness rating of 0, is 0 kilometers away from the city center, and the Airbnb is the entire house), $\beta_1$ is the slope for cleanliness rating, $\beta_2$ is the slope for distance from city center (kilometers), $\beta_3$ is the slope for whether the Airbnb is a private room, and $\beta_4$ is the slope for whether the Airbnb is a shared room.
 
 This model also assumes that errors $\epsilon_i$ are normally distributed with a mean of $0$ and a variance of $\sigma^2$. We also assume that the error terms are independent, meaning $Cov(\epsilon_i, \epsilon_j) = 0$ for $i \neq j$.
 
@@ -113,15 +113,29 @@ We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance I
 par(mfrow=c(2,2))
 # leverage values
 levs = hatvalues(airbnb.lm1)
-plot(levs, ylab="Leverages", xlab="Observation")
+#plot(levs, ylab="Leverages", xlab="Observation")
+
+highleverage <- function(airbnb.lm1) {
+p = length(coefficients(airbnb.lm1))
+n = length(fitted(airbnb.lm1))
+ratio = p/n
+plot(hatvalues(airbnb.lm1), main="Index Plot of Ratio")
+abline(h=c(2,3)*ratio, col="red", lty=2)
+identify(1:n, hatvalues(airbnb.lm1), names(hatvalues(airbnb.lm1)))
+}
+highleverage(airbnb.lm1)
 
 # DFFITS
 dffits.mr = dffits(airbnb.lm1)
 plot(dffits.mr, ylab="DFFITS", xlab="Observation")
 
 # Cook's distance
-cook.mr = cooks.distance(airbnb.lm1)
-plot(cook.mr, ylab="Cook's Distance", xlab="Observation")
+#cook.mr = cooks.distance(airbnb.lm1)
+#plot(cook.mr, ylab="Cook's Distance", xlab="Observation")
+
+cutoff <- 4/(nrow(airbnb$price)-length(airbnb.lm1$coefficients)-2)
+plot(airbnb.lm1, which=4, cook.levels=cutoff)
+abline(h=cutoff, lty=2, col="red")
 
 # DFBETAS
 dfbetas.mr = dfbetas(airbnb.lm1)
@@ -134,13 +148,14 @@ vif(airbnb.lm1)
 ```
 
 
-We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observation 971 appears to be the point with very high Cook's ditance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
+We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observation 971 appears to be the point with very high Cook's distance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
 
-Fitting a model with log tranformations on response and numeric predictors:
+Fitting a model with log transformations on response and numeric predictors:
 
 ```{r,echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 summary(airbnb.lm.log)
+autoplot(airbnb.lm.log)
 ```
 
 Fitting a log-transformed model without outliers and high leverage points:
