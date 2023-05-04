@@ -80,7 +80,7 @@ From the box plots, we can see that the range of prices for `Entire home/apt`, `
 
 =======
 
-## III Model and Analysis
+## III. Model and Analysis
 
 The theoretical multiple regression model is as follows:
 
@@ -110,7 +110,6 @@ We notice a fanning effect on Residuals vs. Fitted plot, indicating that there i
 We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
 
 ```{r, echo=FALSE}
-airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 par(mfrow=c(2,2))
 # leverage values
 levs = hatvalues(airbnb.lm1)
@@ -189,7 +188,7 @@ From this interval, we are 95% confident that the mean price for a private room 
 
 Since 0 is not within the interval, we can conclude that the price for Airbnbs in the entire house compared to private rooms and shared rooms differ.  
 
-## IV Conclusion
+## IV. Conclusion
 
 Based on our results, we can conclude that the increase in price for an Airbnb on average is higher for an entire home/apartment as compared to shared rooms and private rooms. This means that an Airbnb of an entire home/apartment is more likely to have a higher price compared to an Airbnb of a private room and shared room. For two Airbnbs, one being a private or shared room and one being an entire home/apartment, with the same cleanliness rating and distance from city center, on average, the Airbnb in an entire house/apartment is expected to cost more than an Airbnb in a private room. Likewise, for two Airbnbs with the same cleanliness rating and distance from city center, an Airbnb in an entire house/apartment is expected to cost more than an Airbnb in a shared room. 
 
@@ -198,6 +197,8 @@ A possible limitation of this project is that there is some ambiguity about how 
 ## Appendix
 Fitting a model with log transformations on response and numeric predictors:
 ```{r,echo=FALSE}
+airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
+summary(airbnb.lm.log)
 par(mfrow=c(2,2))
 # leverage values
 levs = hatvalues(airbnb.lm.log)
@@ -246,7 +247,6 @@ airbnbNO <- airbnb.mod[-c(74,628,1103,971,100,134,191,8,726,1099,138,254,575,272
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
 autoplot(airbnb.lm.log)
 autoplot(airbnbNO.lm.log)
-summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
 After log transforming our predictors and y-value, we can compare with removing outliers and high leverage points. In the Residual vs Fitted plot, it seems that there are some outlier residuals, as well as in the Scale-Location plot, (one specifically is observation 971). It seems that after log transforming the original fitted model, there is no longer a fanning effect in our Residual vs Fitted and Scale-Location plots. Thus, the model form assumption is met, and the constant variance assumption is met. We can also assume independence because the price of one Airbnb listing shouldn't affect the price of another Airbnb listing. In the Normal Q-Q plot, it seems that observation 971 is an outlier, but overall, the normality assumption seems good. After the removal of outliers and high leverage points, the assumptions are still met and the plots have not been significantly changed. Therefore, it is safe to keep these observations.  
