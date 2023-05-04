@@ -173,7 +173,7 @@ Fitting a log-transformed model without outliers and high leverage points:
 
 ```
 
-
+ 
 
 Best subsets 
 
