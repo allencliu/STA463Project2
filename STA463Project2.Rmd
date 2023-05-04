@@ -155,7 +155,12 @@ Fitting a model with log transformations on response and numeric predictors:
 
 ```{r,echo=FALSE}
 airbnbNO <- airbnb.mod[-c(74,628,1103),]
-airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
+
+airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
+
+eliminated<- subset(airbnbNO, airbnbNO$logrstandard > -3 & airbnbNO$logrstandard < 3)
+
+airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=eliminated)
 autoplot(airbnbNO.lm.log)
 summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
