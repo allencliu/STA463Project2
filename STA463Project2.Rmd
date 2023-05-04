@@ -160,6 +160,11 @@ summary(airbnb.lm1)
 ```
 
 
+By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 0.00914. These p-values are well below our significance level of 0.01, meaning there is sufficient evidence to reject the null hypothesis. We can conclude $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$, that is, whether or not the Airbnb is in the entire house, a private room, or a shared room is a statistically significant predictor for Airbnb price.
+
+
+
+=======
 By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 0.00914. These p-values are well below our significance level of 0.01, meaning there is sufficient evidence to reject the null hypothesis. We can conclude $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$, that is, whether or not the Airbnb is in the entire house, a private room, or a shared room it is a statistically significant predictor for Airbnb price.
 
 The parameter estimate for private_room is -348.451, meaning that, holding all other predictors constant, the  Airbnb price for a private room is expected to be 348.451 Euros less than the Airbnb price for an entire home/apt.
@@ -187,7 +192,14 @@ confint(airbnb.lm1)
 
 From this interval, we are 95% confident that the mean price for a private room will be between 391 to 305 Euros less compared to an entire apartment/house. We are also 95% confident that the mean price for a shared room will be between 684.66 to 97.22 Euros less compared to an entire apartment/house.
 
-Since 0 is not within the interval, we can conclude that the price for airbnbs in the entire house compared to private rooms and shared rooms differ.  
+Since 0 is not within the interval, we can conclude that the price for Airbnbs in the entire house compared to private rooms and shared rooms differ.  
+
+
+Best subsets 
+
+=======
+
+## IV. Conclusion
 
 
 ## IV Conclusion
@@ -208,7 +220,7 @@ Based on our results, we can conclude that the increase in price for an airbnb o
 
 
 ##Appendix (TBD)
-
+Fitting a model with log transformations on response and numeric predictors:
 ```{r,echo=FALSE}
 par(mfrow=c(2,2))
 # leverage values
@@ -248,34 +260,20 @@ vif(airbnb.lm.log)
 ```
 
 
-We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observation 971 appears to be the point with very high Cook's distance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
-
-Fitting a model with log transformations on response and numeric predictors:
+We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observations 74, 628, and 1103 appear to have high Cook's distance. We will exclude these observations and analyze a fitted model without outliers.
 
 ```{r,echo=FALSE}
 airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
 
+# remove outliers and high leverage
 airbnbNO <- airbnb.mod[-c(74,628,1103,971,100,134,191,8,726,1099,138,254,575,272,159,860,454,784),]
-
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
+autoplot(airbnb.lm.log)
 autoplot(airbnbNO.lm.log)
 summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
+After log transforming our predictors and y-value, we can compare with removing outliers and high leverage points. In the Residual vs Fitted plot, it seems that there are some outlier residuals, as well as in the Scale-Location plot, (one specifically is observation 971). It seems that after log transforming the original fitted model, there is no longer a fanning effect in our Residual vs Fitted and Scale-Location plots. Thus, the model form assumption is met, and the constant variance assumption is met. We can also assume independence because the price of one Airbnb listing in one city shouldn't affect the price of an Airbnb listing in another city. In the Normal Q-Q plot, it seems that observation 971 is an outlier, but overall, the normality assumption seems good. After the removal of outliers and high leverage points, our assumptions are still met.  
 
+Furthermore, in our summary statistics, it appears that the removal of outliers affected the Adjusted R-Squared because it increased from 0.48 to 0.53. Also, the significance of log(cleanliness_rating) improved a lot because the p-value reduced from 0.124 to 0.0525. 
 
-
-=======
-
-Fitting a log-transformed model without outliers and high leverage points:
-
-```{r,echo=FALSE}
-# Have a conditional to exclude points with a standardized residual >= 3
-
-```
-
-Best subsets 
-
-=======
-
-## IV. Conclusion
