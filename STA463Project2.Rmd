@@ -165,7 +165,7 @@ The parameter estimate for shared_room is -390.939, meaning that, holding all ot
 
 The fitted model to predict Airbnb price for an Airbnb in an entire home/apt is:
 
-
+$\hat{Y_i} = 695.294 + 15.553X_{1i} -41.773X_{2i}$, $i = 1, 2, .., 1103$
 
 
 
