@@ -17,7 +17,7 @@ library(car)
 
 ## I. Introduction  
 
-This project explores a dataset pertaining to Airbnb prices in Amsterdam during weekdays. Each Airbnb listing is an observation, and is evaluated for room types, cleanliness, and distance from Amsterdam's city center.
+This project explores a data set pertaining to Airbnb prices in Amsterdam during weekdays. Each Airbnb listing is an observation, and is evaluated for room types, cleanliness, and distance from Amsterdam's city center.
 
 Our variables under consideration:
 
@@ -26,7 +26,7 @@ Our variables under consideration:
 * X2 = dist (distance from city center in kilometers)
 * X3 = cleanliness_rating (numerical, ranging from 4 to 10)
 
-We will first identify the structure of our dataset:
+We will first identify the structure of our data set:
 
 ```{r, echo=FALSE}
 airbnb <- read.csv("airbnb.csv")
@@ -171,13 +171,11 @@ Fitting a log-transformed model without outliers and high leverage points:
 ```{r,echo=FALSE}
 # Have a conditional to exclude points with a standardized residual >= 3
 
-airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
-
-eliminated<- subset(airbnb.mod, airbnb.mod$logrstandard > -3 & airbnb.mod$logrstandard < 3)
-
-airbnb.lm.log.noOut <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=eliminated)
-summary(airbnb.lm.log.noOut)
 ```
+
+
+
+Best subsets 
 
 =======
 
