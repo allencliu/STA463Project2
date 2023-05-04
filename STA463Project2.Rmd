@@ -162,6 +162,19 @@ summary(airbnb.lm1)
 
 By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 0.00914. These p-values are well below our significance level of 0.01, meaning there is sufficient evidence to reject the null hypothesis. We can conclude $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$, that is, whether or not the Airbnb is in the entire house, a private room, or a shared room it is a statistically significant predictor for Airbnb price.
 
+The parameter estimate for private_room is -348.451, meaning that, holding all other predictors constant, the  Airbnb price for a private room is expected to be 348.451 Euros less than the Airbnb price for an entire home/apt.
+
+The parameter estimate for shared_room is -390.939, meaning that, holding all other predictors constant, the Airbnb price for a shared room is expected to be 390.939 Euros less than the Airbnb price for an entire home/apt.
+
+The fitted model to predict Airbnb price for an Airbnb in an entire home/apt is:
+
+
+
+
+
+
+
+
 
 
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
