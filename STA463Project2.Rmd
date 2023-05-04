@@ -154,6 +154,12 @@ For our research hypothesis question, we test the following hypotheses:
 
 By the summary above, we have that 
 
+
+
+
+
+
+
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
 --------------------------------------------------------------------------------
 
