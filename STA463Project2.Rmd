@@ -216,9 +216,7 @@ Fitting a model with log transformations on response and numeric predictors:
 ```{r,echo=FALSE}
 airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
 
-eliminated<- subset(airbnb.mod, airbnb.mod$logrstandard > -3 & airbnb.mod$logrstandard < 3)
-
-airbnbNO <- eliminated[-c(74,628,1103),]
+airbnbNO <- airbnb.mod[-c(74,628,1103,971,100,134,191,8,726,1099,138,254,575,272,159,860,454,784),]
 
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
 autoplot(airbnbNO.lm.log)
@@ -232,8 +230,6 @@ Fitting a log-transformed model without outliers and high leverage points:
 # Have a conditional to exclude points with a standardized residual >= 3
 
 ```
-
- 
 
 Best subsets 
 
