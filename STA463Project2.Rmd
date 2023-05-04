@@ -155,12 +155,14 @@ Fitting a model with log transformations on response and numeric predictors:
 ```{r,echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 summary(airbnb.lm.log)
-autoplot(airbnb.lm.log)
 ```
 
 Fitting a log-transformed model without outliers and high leverage points:
 
 ```{r,echo=FALSE}
+airbnbNO <- airbnb.mod[-c(100,134,971),]
+airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
+autoplot(airbnbNO.lm.log)
 # Have a conditional to exclude points with a standardized residual >= 3
 
 ```
