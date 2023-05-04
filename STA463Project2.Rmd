@@ -161,10 +161,12 @@ summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
 
+For our research hypothesis question, we test the following hypotheses:
 
+* Null Hypothesis: $H_0: \beta_3 = \beta_4 = 0$
+* Alternative Hypothesis: $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$
 
-
-
+By the summary above, we have that 
 
 
 Fitting a log-transformed model without outliers and high leverage points:
