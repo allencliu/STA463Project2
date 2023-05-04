@@ -219,7 +219,10 @@ We have low VIF scores very close to 1, indicating that we do not have any issue
 Fitting a model with log transformations on response and numeric predictors:
 
 ```{r,echo=FALSE}
-airbnbNO <- airbnb.mod[-c(74,628,1103),]
+airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
+
+airbnbNO <- airbnb.mod[-c(74,628,1103,971,100,134,191,8,726,1099,138,254,575,272,159,860,454,784),]
+
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
 autoplot(airbnbNO.lm.log)
 summary(airbnb.lm.log)
@@ -237,12 +240,7 @@ Fitting a log-transformed model without outliers and high leverage points:
 
 ```
 
-
-
 Best subsets 
-```{r}
-
-```
 
 =======
 
