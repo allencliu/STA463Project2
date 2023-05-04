@@ -28,7 +28,7 @@ Our variables under consideration:
 * X2 = dist (distance from city center in kilometers)
 * X3 = cleanliness_rating (numerical, ranging from 4 to 10)
 
-We will first identify the structure of our data set:
+We will first identify the composition of our data set:
 
 ```{r, echo=FALSE}
 airbnb <- read.csv("airbnb.csv")
