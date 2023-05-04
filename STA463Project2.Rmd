@@ -111,7 +111,7 @@ We notice a fanning effect on Residuals vs. Fitted plot, indicating that there i
 
 We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
 
-```{r}
+```{r, echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 par(mfrow=c(2,2))
 # leverage values
@@ -155,7 +155,7 @@ For our research hypothesis question, we test the following hypotheses:
 * Null Hypothesis: $H_0: \beta_3 = \beta_4 = 0$
 * Alternative Hypothesis: $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$
 
-```{r}
+```{r,echo=FALSE}
 summary(airbnb.lm1)
 ```
 
@@ -186,7 +186,7 @@ $\hat{Y_i} = (695.294 - 390.939) + 15.553X_{1i} -41.773X_{2i}$
 Where $\hat{Y_i}$ is estimated Airbnb price, $X_{1i}$ is the cleanliness rating, and $X_{2i}$ is the distance from the city center in kilometers, for observation $i$.
 
 
-```{r}
+```{r,echo=FALSE}
 confint(airbnb.lm1)
 ```
 
