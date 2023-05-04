@@ -133,7 +133,7 @@ vif(airbnb.lm1)
 
 We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. We have a few high leverage points with leverages above 0.10. Observation 971 appears to be the point with very high Cook's ditance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
 
-Fitting a model with log tranformations on response and numeric predictors:
+Fitting a model with log transformations on response and numeric predictors:
 
 ```{r,echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
@@ -145,11 +145,42 @@ Fitting a log-transformed model without outliers and high leverage points:
 ```{r,echo=FALSE}
 # Have a conditional to exclude points with a standardized residual >= 3
 
+airbnb.mod$logrstandard <- rstandard(airbnb.lm.log)
+
+eliminated2<- subset(airbnb.mod, airbnb.mod$logrstandard > -3 & airbnb.mod$logrstandard < 3)
+
+airbnb.lm.log.noOut2 <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=eliminated2)
+summary(airbnb.lm.log.noOut2)
 ```
 
 
 
 Best subsets 
+
+
+No Outliers
+```{r}
+
+airbnb$rstandard <- rstandard(airbnb.lm.log)
+
+airbnbNOoutliers2 <- airbnb[-c(353,1057,539,215,726,389,575,272,254,1099,159,8,100,134,971),]
+
+ggplot(airbnbNOoutliers2, aes(x=room_type, y=price,group=room_type)) + 
+  geom_boxplot()
+tapply(airbnbNOoutliers2$price, airbnbNOoutliers2$room_type, summary)
+
+Q <- quantile(airbnb$price, probs=c(.25, .75), na.rm = FALSE)
+
+iqr <- IQR(airbnb$price)
+
+up <-  Q[2]+1.5*iqr # Upper Range  
+low<- Q[1]-1.5*iqr # Lower Range
+
+eliminated<- subset(airbnb, airbnb$price > (Q[1] - 1.5*iqr) & airbnb$price < (Q[2]+1.5*iqr))
+
+ggplot(eliminated, aes(x=room_type, y=price,group=room_type)) + 
+  geom_boxplot()
+```
 
 =======
 
