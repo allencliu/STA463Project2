@@ -109,6 +109,66 @@ We notice a fanning effect on Residuals vs. Fitted plot, indicating that there i
 
 We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
 
+```{r}
+par(mfrow=c(2,2))
+# leverage values
+levs = hatvalues(airbnb.lm1)
+#plot(levs, ylab="Leverages", xlab="Observation")
+
+highleverage <- function(airbnb.lm1) {
+p = length(coefficients(airbnb.lm1))
+n = length(fitted(airbnb.lm.log))
+ratio = p/n
+plot(hatvalues(airbnb.lm1), main="Index Plot of Ratio")
+abline(h=c(2,3)*ratio, col="red", lty=2)
+identify(1:n, hatvalues(airbnb.lm1), names(hatvalues(airbnb.lm1)))
+}
+highleverage(airbnb.lm1)
+
+# DFFITS
+dffits.mr = dffits(airbnb.lm1)
+plot(dffits.mr, ylab="DFFITS", xlab="Observation")
+
+# Cook's distance
+#cook.mr = cooks.distance(airbnb.lm1)
+#plot(cook.mr, ylab="Cook's Distance", xlab="Observation")
+
+cutoff <- 4/(nrow(airbnb$price)-length(airbnb.lm1$coefficients)-2)
+plot(airbnb.lm1, which=4, cook.levels=cutoff)
+abline(h=cutoff, lty=2, col="red")
+
+# DFBETAS
+dfbetas.mr = dfbetas(airbnb.lm1)
+plot(dfbetas.mr[,2], ylab="DFBETAS x1")
+```
+
+
+```{r,echo=FALSE}
+vif(airbnb.lm1)
+```
+
+For our research hypothesis question, we test the following hypotheses:
+
+* Null Hypothesis: $H_0: \beta_3 = \beta_4 = 0$
+* Alternative Hypothesis: $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$
+
+By the summary above, we have that 
+
+# DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+##Appendix (TBD)
+
 ```{r,echo=FALSE}
 airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 par(mfrow=c(2,2))
@@ -145,7 +205,7 @@ plot(dfbetas.mr[,2], ylab="DFBETAS x1")
 ```
 
 ```{r,echo=FALSE}
-vif(airbnb.lm1)
+vif(airbnb.lm.log)
 ```
 
 
