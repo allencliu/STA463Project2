@@ -91,6 +91,11 @@ $\beta_0$ is the intercept term (Airbnb price in Euros when the Airbnb has a cle
 
 This model also assumes that errors $\epsilon_i$ are normally distributed with a mean of $0$ and a variance of $\sigma^2$. We also assume that the error terms are independent, meaning $Cov(\epsilon_i, \epsilon_j) = 0$ for $i \neq j$.
 
+```{r,echo=FALSE}
+airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
+```
+
+
 Let's look at the fitted model:
 
 ```{r,echo=FALSE}
@@ -101,7 +106,6 @@ summary(airbnb.lm1)
 Now we check the assumptions of our model.
 
 ```{r,echo=FALSE}
-airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
 autoplot(airbnb.lm1)
 ```
 
