@@ -50,6 +50,7 @@ airbnb.mod$private_room <-ifelse(airbnb$room_type == 'Private room', 1, 0)
 airbnb.mod$shared_room <-ifelse(airbnb$room_type == 'Shared room', 1, 0)
 airbnb.mod <- airbnb.mod[,-3]
 head(airbnb.mod)
+#airbnb.mod
 ```
 
 We have removed all unnecessary columns and rows from our data set. Now we can create a scatter plot and correlation matrix of our variables: 
@@ -91,14 +92,11 @@ $\beta_0$ is the intercept term (Airbnb price in Euros when the Airbnb has a cle
 
 This model also assumes that errors $\epsilon_i$ are normally distributed with a mean of $0$ and a variance of $\sigma^2$. We also assume that the error terms are independent, meaning $Cov(\epsilon_i, \epsilon_j) = 0$ for $i \neq j$.
 
+Let's look at the fitted model:
+
 ```{r,echo=FALSE}
 airbnb.lm1 <- lm(data=airbnb.mod, price ~ cleanliness_rating + dist + private_room + shared_room)
 ```
-
-
-Let's look at the fitted model:
-
-
 
 Now we check the assumptions of our model.
 
@@ -136,7 +134,7 @@ vif(airbnb.lm1)
 ```
 
 
-We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. We have a few high leverage points with leverages above 0.10. Observation 971 appears to be the point with very high Cook's ditance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
+We have low VIF scores very close to 1, indicating that we do not have any issues with multicollinearity. The threshold for high leverage points is found with the equation $3 * \frac{p}{n} = 3 * \frac{5}{1103} = 0.01359928$ We have a few high leverage points with leverages above 0.01359928. Observation 971 appears to be the point with very high Cook's ditance, DFFITS, and DFBETAS x1. We should definitely exclude observation 971 if we want to analyze a fitted model without outliers.
 
 Fitting a model with log tranformations on response and numeric predictors:
 
