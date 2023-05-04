@@ -161,6 +161,8 @@ By the summary above, we have that the p-value for the $\beta_3$ estimator is < 
 
 The parameter estimate for private_room is -348.451, meaning that, holding all other predictors constant, the  Airbnb price for a private room is expected to be 348.451 Euros less than the Airbnb price for an entire home/apt.
 
+The parameter estimate for shared_room is -390.939, meaning that, holding all other predictors constant, the Airbnb price for a shared room is expected to be 390.939 Euros less than the Airbnb price for an entire home/apt.
+
 
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
 --------------------------------------------------------------------------------
