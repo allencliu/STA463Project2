@@ -33,7 +33,7 @@ airbnb <- read.csv("airbnb.csv")
 head(airbnb)
 ```
 
-This project involves performing a confirmatory multiple regression analysis. Specifically, we seek to answer the following research question: Does the relationship between Airbnb prices in Amsterdam and distance from the city center differ for Airbnbs in private rooms versus Airbnbs in the entire home/apartment versus shared rooms?
+This project involves performing a confirmatory multiple regression analysis. Specifically, we seek to answer the following research question: Is there a relationship between Airbnb prices in Amsterdam and whether those Airbnbs are in private rooms versus Airbnbs in the entire home/apartment versus shared rooms?
 
 =======
 
