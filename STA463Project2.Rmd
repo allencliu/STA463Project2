@@ -110,35 +110,36 @@ We notice a fanning effect on Residuals vs. Fitted plot, indicating that there i
 We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
 
 ```{r,echo=FALSE}
+airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
 par(mfrow=c(2,2))
 # leverage values
-levs = hatvalues(airbnb.lm1)
+levs = hatvalues(airbnb.lm.log)
 #plot(levs, ylab="Leverages", xlab="Observation")
 
-highleverage <- function(airbnb.lm1) {
-p = length(coefficients(airbnb.lm1))
-n = length(fitted(airbnb.lm1))
+highleverage <- function(airbnb.lm.log) {
+p = length(coefficients(airbnb.lm.log))
+n = length(fitted(airbnb.lm.log))
 ratio = p/n
-plot(hatvalues(airbnb.lm1), main="Index Plot of Ratio")
+plot(hatvalues(airbnb.lm.log), main="Index Plot of Ratio")
 abline(h=c(2,3)*ratio, col="red", lty=2)
-identify(1:n, hatvalues(airbnb.lm1), names(hatvalues(airbnb.lm1)))
+identify(1:n, hatvalues(airbnb.lm.log), names(hatvalues(airbnb.lm1)))
 }
-highleverage(airbnb.lm1)
+highleverage(airbnb.lm.log)
 
 # DFFITS
-dffits.mr = dffits(airbnb.lm1)
+dffits.mr = dffits(airbnb.lm.log)
 plot(dffits.mr, ylab="DFFITS", xlab="Observation")
 
 # Cook's distance
-#cook.mr = cooks.distance(airbnb.lm1)
+#cook.mr = cooks.distance(airbnb.lm.log)
 #plot(cook.mr, ylab="Cook's Distance", xlab="Observation")
 
-cutoff <- 4/(nrow(airbnb$price)-length(airbnb.lm1$coefficients)-2)
-plot(airbnb.lm1, which=4, cook.levels=cutoff)
+cutoff <- 4/(nrow(airbnb$price)-length(airbnb.lm.log$coefficients)-2)
+plot(airbnb.lm.log, which=4, cook.levels=cutoff)
 abline(h=cutoff, lty=2, col="red")
 
 # DFBETAS
-dfbetas.mr = dfbetas(airbnb.lm1)
+dfbetas.mr = dfbetas(airbnb.lm.log)
 plot(dfbetas.mr[,2], ylab="DFBETAS x1")
 
 ```
@@ -153,12 +154,12 @@ We have low VIF scores very close to 1, indicating that we do not have any issue
 Fitting a model with log transformations on response and numeric predictors:
 
 ```{r,echo=FALSE}
-airbnb.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnb.mod)
-airbnbNO <- airbnb.mod[-c(100,134,971),]
+
+airbnbNO <- airbnb.mod[-c(74,628,1103),]
 airbnbNO.lm.log <- lm(log(price) ~ log(cleanliness_rating) + log(dist) + private_room + shared_room, data=airbnbNO)
 autoplot(airbnbNO.lm.log)
-summary(airbnbNO.lm.log)
 summary(airbnb.lm.log)
+summary(airbnbNO.lm.log)
 ```
 
 Fitting a log-transformed model without outliers and high leverage points:
