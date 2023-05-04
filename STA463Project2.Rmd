@@ -192,7 +192,14 @@ confint(airbnb.lm1)
 
 From this interval, we are 95% confident that the mean price for a private room will be between 391 to 305 Euros less compared to an entire apartment/house. We are also 95% confident that the mean price for a shared room will be between 684.66 to 97.22 Euros less compared to an entire apartment/house.
 
-Since 0 is not within the interval, we can conclude that the price for airbnbs in the entire house compared to private rooms and shared rooms differ.  
+Since 0 is not within the interval, we can conclude that the price for Airbnbs in the entire house compared to private rooms and shared rooms differ.  
+
+
+Best subsets 
+
+=======
+
+## IV. Conclusion
 
 
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
@@ -263,12 +270,3 @@ summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
 After log transforming our predictors and y-value, we can compare with removing outliers and high leverage points. 
-
-
-=======
-
-Best subsets 
-
-=======
-
-## IV. Conclusion
