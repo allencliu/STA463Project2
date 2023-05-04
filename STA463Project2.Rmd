@@ -190,6 +190,10 @@ From this interval, we are 95% confident that the mean price for a private room 
 Since 0 is not within the interval, we can conclude that the price for airbnbs in the entire house compared to private rooms and shared rooms differ.  
 
 
+## IV Conclusion
+
+Based on our results, we can conclude that the increase in price for an airbnb on average is higher for an entire home/apartment as compared to shared rooms and private rooms. This means that an airbir of an entire home/apartment is more likely to have a higher price compared to an airbnb of a private room and shared room. For two airbnbs, one being a private or shared room and one being an entire home/apartment, with the same cleanliness rating and distance from city center, we can expect, on average, that the airbnb that's an entire house/apartment to cost more than the private or shared room. A possible limitation of this project is that there is some ambiguity about how the data was collected. We assume that all observations are independent, although it is not completely clear how it was collected. Since the dataset is large and the airbnbs were from different popular European cities, we believe that the airbnbs shouldn't affect one another and that it is safe to make this assumption.
+
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
 --------------------------------------------------------------------------------
 
