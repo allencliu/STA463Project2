@@ -124,7 +124,7 @@ plot(hatvalues(airbnb.lm1), main="Index Plot of Ratio")
 abline(h=c(2,3)*ratio, col="red", lty=2)
 identify(1:n, hatvalues(airbnb.lm1), names(hatvalues(airbnb.lm1)))
 }
-highleverage(airbnb.lm1)
+# highleverage(airbnb.lm1)
 
 # DFFITS
 dffits.mr = dffits(airbnb.lm1)
@@ -211,7 +211,7 @@ plot(hatvalues(airbnb.lm.log), main="Index Plot of Ratio")
 abline(h=c(2,3)*ratio, col="red", lty=2)
 identify(1:n, hatvalues(airbnb.lm.log), names(hatvalues(airbnb.lm1)))
 }
-highleverage(airbnb.lm.log)
+# highleverage(airbnb.lm.log)
 
 # DFFITS
 dffits.mr = dffits(airbnb.lm.log)
