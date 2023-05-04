@@ -166,7 +166,7 @@ For our research hypothesis question, we test the following hypotheses:
 * Null Hypothesis: $H_0: \beta_3 = \beta_4 = 0$
 * Alternative Hypothesis: $H_a: \beta_3 \neq 0$ or $\beta_4 \neq 0$
 
-By the summary above, we have that 
+By the summary above, we have that the p-value for the $\beta_3$ estimator is < 2e-16. We also have that the p-value for the $\beta_4$ estimator is 2.11e-05
 
 
 Fitting a log-transformed model without outliers and high leverage points:
