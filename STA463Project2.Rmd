@@ -162,12 +162,19 @@ summary(airbnb.lm.log)
 summary(airbnbNO.lm.log)
 ```
 
+
+
+
+
+
+
 Fitting a log-transformed model without outliers and high leverage points:
 
 ```{r,echo=FALSE}
 # Have a conditional to exclude points with a standardized residual >= 3
 
 ```
+
 
 
 
