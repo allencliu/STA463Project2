@@ -3,8 +3,8 @@ title: "STA463Project2"
 author: "Steve, Jairus, Allen"
 date: '2023-04-27'
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ library(car)
 
 ## I. Introduction  
 
-This project explores a data set pertaining to Airbnb prices in Amsterdam during weekdays. Each Airbnb listing is an observation, and is evaluated for room types, cleanliness, and distance from Amsterdam's city center.
+This project explores a data set pertaining to Airbnb prices in Amsterdam during weekdays. Each Airbnb listing is an observation, and is evaluated for room types, cleanliness, and distance from Amsterdam's city center. Our dataset contains 1103 observations.
 
 Our variables under consideration:
 
@@ -170,11 +170,15 @@ The fitted model to predict Airbnb price for an Airbnb in an entire home/apt is:
 
 $\hat{Y_i} = 695.294 + 15.553X_{1i} -41.773X_{2i}$, $i = 1, 2, .., 1103$
 
+The fitted model to predict Airbnb price for an Airbnb in a private room is:
 
+$\hat{Y_i} = (695.294 - 348.451) + 15.553X_{1i} -41.773X_{2i}$, $i = 1, 2, .., 1103$
 
+The fitted model to predict Airbnb price for an Airbnb in a shared room is:
 
+$\hat{Y_i} = (695.294 - 390.939) + 15.553X_{1i} -41.773X_{2i}$
 
-
+Where $\hat{Y_i}$ is estimated Airbnb price, $X_{1i}$ is the cleanliness rating, and $X_{2i}$ is the distance from the city center in kilometers, for observation $i$.
 
 
 # DO NOT MODIFY BELOW THIS LINE (TO BE DONE AFTER ORIGINAL MODEL)
