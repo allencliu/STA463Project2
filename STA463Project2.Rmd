@@ -107,7 +107,7 @@ autoplot(airbnb.lm1)
 
 We notice a fanning effect on Residuals vs. Fitted plot, indicating that there is non-constant variance. The normal Q-Q plot is clearly non-linear, indicating a violation in the normality assumption. We can also observe many points with high standardized residuals and high leverage on the Residuals vs Leverage plot. We propose applying a log-transformation on the response variable (price) and the numeric predictors (cleanliness_rating and dist) as a remedial measure. We will also identify the model with and without outliers and high leverage points.
 
-We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity.
+We identify Leverage, DFFITS, Cook's Distance, DFBETAS plots, and the Variance Inflation Factor (VIF) scores to examine outlier points and possible multicollinearity. VIF scores and their interpretation are available in the Appendix.
 
 ```{r, echo=FALSE}
 par(mfrow=c(2,2))
@@ -184,7 +184,7 @@ Where $\hat{Y_i}$ is estimated Airbnb price, $X_{1i}$ is the cleanliness rating,
 confint(airbnb.lm1)
 ```
 
-From this interval, we are 95% confident that the mean price for a private room will be between 391 to 305 Euros less compared to an entire apartment/house. We are also 95% confident that the mean price for a shared room will be between 684.66 to 97.22 Euros less compared to an entire apartment/house.
+From this interval, we are 95% confident that the mean Airbnb price for a private room will be between 391 to 305 Euros less compared to the price of an Airbnb in an entire apartment/house. We are also 95% confident that the mean Airbnb price for a shared room will be between 684.66 to 97.22 Euros less compared to compared to the price of an Airbnb in an entire apartment/house.
 
 Since 0 is not within the interval, we can conclude that the price for Airbnbs in the entire house compared to private rooms and shared rooms differ.  
 
@@ -259,4 +259,13 @@ summary(airbnbNO.lm.log.red)
 anova(airbnbNO.lm.log, airbnbNO.lm.log.red)
 ```
 
-We can see that on the model without log(cleanliness_rating) as a predictor, every other predictor has a statistically significant p-value. However, our adjusted R-squared and original R-squared decrease after removing log(cleanliness_rating) from our model. This means that the model without log(cleanliness_rating) as a predictor does not explain the variability in Airbnb price as well as the model with log(cleanliness_rating) as a predictor.
+We can see that on the model without log(cleanliness_rating) as a predictor, every other predictor has a statistically significant p-value. However, our adjusted R-squared and original R-squared decrease after removing log(cleanliness_rating) from our model. This means that the model without log(cleanliness_rating) as a predictor does not explain the variability in Airbnb price as well as the model with log(cleanliness_rating) as a predictor. The anova output for generalized linear F yields a p-value of 0.05248, greater than a significance level of 0.05. There is not sufficient evidence to reject the null hypothesis, and therefore, we conclude that log(cleanliness_rating) is not useful to the multiple regression model for Airbnb prices.
+
+We will evaluate a confidence interval on the predictors for the reduced model:
+
+```{r,echo=FALSE}
+confint(airbnbNO.lm.log.red)
+```
+
+From this interval, we are 95% confident that the geometric mean Airbnb price for a private room is expected to be a factor of between exp(-0.6771955) = 0.5080398 and 0.5523774, compared to the price of an Airbnb in an entire apartment/house. This means that, with 95% confidence, the geometric mean Airbnb price for a private room is expected to be between 50.8% and 55.2% of the price of an Airbnb in an entire apartment/house. We are also 95% confident that the geometric mean Airbnb price for a shared room is expected to be a factor of between exp(-1.1636835) = 0.3123336 and exp(-0.4724226) = 0.62349. This means that, with 95% confidence, the geometric mean Airbnb price for a shared room is expected to be between 31.2% and 62.3% of the price of an Airbnb in an entire apartment/house.
+
