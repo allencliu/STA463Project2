@@ -259,9 +259,17 @@ summary(airbnbNO.lm.log.red)
 anova(airbnbNO.lm.log, airbnbNO.lm.log.red)
 ```
 
-We can see that on the model without log(cleanliness_rating) as a predictor, every other predictor has a statistically significant p-value. However, our adjusted R-squared and original R-squared decrease after removing log(cleanliness_rating) from our model. This means that the model without log(cleanliness_rating) as a predictor does not explain the variability in Airbnb price as well as the model with log(cleanliness_rating) as a predictor. The anova output for generalized linear F yields a p-value of 0.05248, greater than a significance level of 0.05. There is not sufficient evidence to reject the null hypothesis, and therefore, we conclude that log(cleanliness_rating) is not useful to the multiple regression model for Airbnb prices.
+We can see that on the model without log(cleanliness_rating) as a predictor, every other predictor has a statistically significant p-value. However, our adjusted R-squared and original R-squared decrease after removing log(cleanliness_rating) from our model. This means that the model without log(cleanliness_rating) as a predictor does not explain the variability in Airbnb price as well as the model with log(cleanliness_rating) as a predictor. The anova output for generalized linear F yields a p-value of 0.05248, greater than a significance level of 0.05. There is not sufficient evidence to reject the null hypothesis, and therefore, we conclude that log(cleanliness_rating) is not useful to the multiple regression model for Airbnb prices.  
 
-We will evaluate a confidence interval on the predictors for the reduced model:
+In other words, we ran a statistical analysis to understand the factors that affect Airbnb prices. In our model, we considered the distance to the center of the city, whether the listing is for a private room, shared room, or entire home/apartment and the cleanliness rating as predictors.
+
+We found that the distance, room type (private, shared, and entire home/apartment), and cleanliness rating have a significant impact on Airbnb prices. This means that these factors are important in determining the price you would pay for an Airbnb.
+
+However, when we removed the cleanliness rating from our model and compared it to the original model, we observed that the adjusted R-squared and original R-squared decreased. This suggests that the model without the cleanliness rating doesn't explain the price variability as well as the model with it. In simpler terms, including the cleanliness rating in our model helps us understand and predict Airbnb prices better. However, it should be noted that the decrease in R-Squared and Adjusted R-Squared is somewhat negligible.
+
+We also conducted an analysis of variance, which compares the two models. The p-value obtained from this analysis was 0.05248. Since this p-value is greater than 0.05 (a commonly used threshold), we don't have enough evidence to conclude that the cleanliness rating significantly contributes to the model's ability to predict Airbnb prices. Therefore, we can say that the cleanliness rating is not useful in our model for determining Airbnb prices.  
+
+Next, we will evaluate a confidence interval on the predictors for the reduced model:
 
 ```{r,echo=FALSE}
 confint(airbnbNO.lm.log.red)
